@@ -1,8 +1,11 @@
-package main.java.ThePresenceOfaCycleOfKLength;
+package ThePresenceOfaCycleOfKLength;
+import com.mathsystem.api.graph.GraphFactory;
+import com.mathsystem.api.graph.model.Graph;
 import com.mathsystem.api.graph.oldmodel.AbstractGraph;
 import com.mathsystem.api.graph.oldmodel.Vertex;
 import com.mathsystem.api.graph.oldmodel.directed.DirectedGraph;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.io.File;
@@ -84,8 +87,7 @@ public class MyTask extends AbstractGraph {
         return -1;
     }
 
-    public static void main(String[] args) {
-
+    public static void main(String[] args) throws FileNotFoundException {
         int CycleLength;
         Vertex Start;
         Vertex W;
@@ -93,12 +95,15 @@ public class MyTask extends AbstractGraph {
         File file = new File("graph.txt");
         List<Vertex> Used = new ArrayList();
         List<Vertexes> QueueV = new ArrayList();
-        DirectedGraph Graph = null;
+        System.out.println("Start Function");
+        com.mathsystem.api.graph.model.Graph G = GraphFactory.loadGraphFromFile(new File("src/main/java/test/graph1.txt"));
+        DirectedGraph Graph = new DirectedGraph(G);
 
 
         Scanner console = new Scanner(System.in);
         CycleLength = console.nextInt();
 
+        System.out.println("Start algorithm");
         for (int CurrentV = 0; CurrentV < Graph.getVertices().size(); CurrentV++) {
             for (int CurrentE = 0; CurrentE < Graph.getVertices().get(CurrentV).getEdgeList().size(); CurrentE++) {
                 W = Graph.getVertices().get(CurrentV).getEdgeList().get(CurrentE).other(Graph.getVertices().get(CurrentV));
@@ -159,5 +164,82 @@ public class MyTask extends AbstractGraph {
         }
         System.out.println("NO!");
         System.exit(0);
+    }
+
+    public static boolean execute(DirectedGraph Graph) throws FileNotFoundException {
+        int CycleLength;
+        Vertex Start;
+        Vertex W;
+        Vertexes U;
+        File file = new File("graph.txt");
+        List<Vertex> Used = new ArrayList();
+        List<Vertexes> QueueV = new ArrayList();
+
+        Scanner console = new Scanner(System.in);
+        CycleLength = console.nextInt();
+
+        System.out.println("We start do algorithm!");
+        for (int CurrentV = 0; CurrentV < Graph.getVertices().size(); CurrentV++) {
+            for (int CurrentE = 0; CurrentE < Graph.getVertices().get(CurrentV).getEdgeList().size(); CurrentE++) {
+                W = Graph.getVertices().get(CurrentV).getEdgeList().get(CurrentE).other(Graph.getVertices().get(CurrentV));
+
+                Vertexes NewVer = new Vertexes(W, 1, Graph.getVertices().get(CurrentV));
+                QueueV.add(NewVer);
+            }
+            // System.out.println("First cycle was done!");
+            for (int i = 0; i < CycleLength - 2; i++) {
+                int QueueLength = QueueV.size();
+                for (int j = 0; j < QueueLength; j++) {
+                    U = QueueV.get(0);
+                    QueueV.remove(0);
+                    if (U != null) {
+                        // System.out.printf("%s", U.ver.toString());
+                        for (int CurrentE = 0; CurrentE < U.ver.getEdgeList().size(); CurrentE++) {
+                            // System.out.println("A");
+                            W = U.ver.getEdgeList().get(CurrentE).other(U.ver);
+                            if (!Used.contains(W) & W != Graph.getVertices().get(CurrentV)) {
+                                if (U.hit != 1) {
+                                    if(!QueueV.contains(W)) {
+                                        Vertexes NewVer = new Vertexes(W, 1, U.ver);
+                                        QueueV.add(NewVer);
+                                    }
+                                    else{
+                                        int findedInd = Find(W, QueueV);
+                                        Vertexes NewVer = new Vertexes(W,QueueV.get(findedInd).hit+1, null);
+                                        QueueV.set(Find(W, QueueV), NewVer);
+                                    }
+                                }
+                                else{
+                                    if(W != U.source){
+                                        if(!QueueV.contains(W)) {
+                                            Vertexes NewVer = new Vertexes(W, 1, U.ver);
+                                            QueueV.add(NewVer);
+                                        }
+                                        else{
+                                            int findedInd = Find(W, QueueV);
+                                            Vertexes NewVer = new Vertexes(W,QueueV.get(findedInd).hit+1, null);
+                                            QueueV.set(Find(W, QueueV), NewVer);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            while(!QueueV.isEmpty()){
+                U = QueueV.get(0);
+                QueueV.remove(0);
+                for (int CurrentE = 0; CurrentE < U.ver.getEdgeList().size(); CurrentE++) {
+                    if(U.ver.getEdgeList().get(CurrentE).other(U.ver) == Graph.getVertices().get(CurrentV)){
+                        System.out.println("YES!");
+                        return true;
+                    }
+                }
+                Used.add(Graph.getVertices().get(CurrentV));
+            }
+        }
+        System.out.println("NO!");
+        return false;
     }
 }
