@@ -1,64 +1,65 @@
-import com.mathsystem.api.graph.oldmodel.AbstractEdge;
-import com.mathsystem.api.graph.oldmodel.AbstractGraph;
-import com.mathsystem.domain.plugin.plugintype.GraphProperty;
+import com.mathsystem.api.graph.model.Edge;
+import com.mathsystem.api.graph.model.Graph;
+import com.mathsystem.domain.graph.repository.Color;
+import com.mathsystem.domain.plugin.plugintype.GraphCharacteristic;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
-//import com.mathsystem.graphapi.AbstractGraph;
+public class MyTask implements GraphCharacteristic {
+    @Override
+    public Integer execute(Graph graph) {
+
+        List<Edge> M = new ArrayList<>();
+
+        Map<UUID, com.mathsystem.api.graph.model.Vertex> map = graph.getVertices();
+
+        List<Edge> array = graph.getEdges();
+
+        for (Edge edge : array) {
+            map.get(edge.getToV()).setWeight(0);
+            map.get(edge.getFromV()).setWeight(0);}
+
+        for (Edge edge : array) {
+            map.get(edge.getToV()).setWeight(map.get(edge.getToV()).getWeight() + 1);
+            map.get(edge.getToV()).setWeight(map.get(edge.getFromV()).getWeight() + 1);
+        }
 
 
-public abstract class MyTask implements GraphProperty {
-    public int execute(AbstractGraph abstractGraph) {
-
-        ArrayList<AbstractEdge> M = new ArrayList<>();
-
-        ArrayList<AbstractEdge> Edges = new ArrayList<>();
-
-        System.out.println(abstractGraph.getEdgeCount());
-
-        //тут типо составлчем массив ребер
-
-
-        // сортируем массив по возрастанию суммы степеней вершин ребер
-        int t, r;
-        boolean isSorted = false;
-        AbstractEdge buf;
-        while (!isSorted) {
-            isSorted = true;
-            for (int i = 0; i < Edges.toArray().length - 1; i++) {
-                AbstractEdge a1 = Edges.get(i);
-                AbstractEdge a2 = Edges.get(i + 1);
-                t = a1.getV().getEdgeList().toArray().length + a1.getW().getEdgeList().toArray().length;
-                r = a2.getV().getEdgeList().toArray().length + a2.getW().getEdgeList().toArray().length;
-                if (t > r) {
-                    isSorted = false;
-                    buf = a1;
-                    Edges.set(i, a2);
-                    Edges.set(i + 1, buf);
+        boolean sorted = false;
+        Edge temp;
+        while (!sorted) {
+            sorted = true;
+            for (int i = 0; i < array.size()-1; i++) {
+                int sumVWi = map.get(array.get(i).getToV()).getWeight() + map.get(array.get(i).getFromV()).getWeight();
+                int sumVWi1 = map.get(array.get(i + 1).getToV()).getWeight() + map.get(array.get(i + 1).getFromV()).getWeight();
+                if (sumVWi < sumVWi1) {
+                    temp = array.get(i);
+                    array.set(i, array.get(i + 1));
+                    array.set(i + 1, temp);
+                    sorted = false;
                 }
             }
         }
-        int m = 0;
-        AbstractEdge temp;
-        for (int i = 0; i < Edges.toArray().length; i++) {
-            temp = Edges.get(i);
-            M.set(m, temp);
-            m++;
-            //тут будет удаление из списка ребер смежных с ней
 
+
+        for (int i = 0; i < array.size(); i++) {
+            if (array.get(i).getColor() != Color.red) {
+                M.add(array.get(i));
+                array.get(i).setColor(Color.blue);
+                for (Edge edge : array) {
+                    if (edge == array.get(i)) continue;
+                    if ((map.get(edge.getToV()) == (map.get(array.get(i).getToV()))
+                            || map.get(edge.getToV()) == (map.get(array.get(i).getFromV()))
+                            || map.get(edge.getFromV()) == (map.get(array.get(i).getToV()))
+                            || map.get(edge.getFromV()) == (map.get(array.get(i).getFromV())))) {
+                        edge.setColor(Color.red);
+                    }
+                }
+            }
         }
-
-        AbstractEdge temp2; //вершина которая на данный момент обрабатывается
-        //промежуточное действие в цикле обработки дорабьотаь
-        ArrayList<AbstractEdge> g = (ArrayList<AbstractEdge>) temp2.getV().getEdgeList();
-        ArrayList<AbstractEdge> f = (ArrayList<AbstractEdge>) temp2.getV().getEdgeList();
-        ArrayList<AbstractEdge> result = null;
-        result.addAll(g);
-        result.addAll(f);
-        Edges.removeAll(result);
-
-        return 0;
-
-
+        return M.toArray().length;
     }
 }
