@@ -14,7 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class MyTaskTest {
     @Test
     static void TestOne() throws FileNotFoundException {
-        Graph testGraph = GraphFactory.loadGraphFromFile(new File("src/main/java/test/graph3.txt"));
+        Graph testGraph = GraphFactory.loadGraphFromFile(new File("src/main/java/test/graph10.txt"));
         DirectedGraph G = new DirectedGraph(testGraph);
 
         System.out.println("Let's try");
