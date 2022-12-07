@@ -2,7 +2,6 @@ package org.example;
 
 import com.mathsystem.api.graph.model.Graph;
 import com.mathsystem.domain.graph.repository.Color;
-import com.mathsystem.api.graph.oldmodel.AbstractGraph;
 import com.mathsystem.api.graph.model.Vertex;
 import com.mathsystem.api.graph.model.Edge;
 import com.mathsystem.domain.plugin.plugintype.GraphProperty;
@@ -13,6 +12,7 @@ public class KFactor implements GraphProperty {
     public boolean execute(Graph graph){
         Map<UUID, Vertex> vertices = graph.getVertices();
         List<Edge> edges=graph.getEdges();
+        if (vertices==null) return false;
         int k=0,k1,t=0;
         if (edges!=null) {
             for (UUID vertex : vertices.keySet()) {
