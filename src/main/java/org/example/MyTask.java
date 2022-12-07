@@ -1,6 +1,5 @@
-package ThePresenceOfaCycleOfKLength;
+package org.example;
 import com.mathsystem.api.graph.GraphFactory;
-import com.mathsystem.api.graph.model.Graph;
 import com.mathsystem.api.graph.oldmodel.AbstractGraph;
 import com.mathsystem.api.graph.oldmodel.Vertex;
 import com.mathsystem.api.graph.oldmodel.directed.DirectedGraph;
@@ -166,8 +165,8 @@ public class MyTask extends AbstractGraph {
         System.exit(0);
     }
 
-    public static boolean execute(DirectedGraph Graph) throws FileNotFoundException {
-        int CycleLength;
+    public static boolean execute(DirectedGraph Graph, int CycleLength) throws FileNotFoundException {
+        // int CycleLength;
         Vertex Start;
         Vertex W;
         Vertexes U;
@@ -176,7 +175,7 @@ public class MyTask extends AbstractGraph {
         List<Vertexes> QueueV = new ArrayList();
 
         Scanner console = new Scanner(System.in);
-        CycleLength = console.nextInt();
+        //CycleLength = console.nextInt();
 
         System.out.println("We start do algorithm!");
         if(CycleLength > Graph.getVertexCount() || CycleLength == 0 || CycleLength == 1){
