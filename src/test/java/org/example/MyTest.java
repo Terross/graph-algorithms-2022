@@ -1,3 +1,5 @@
+package org.example;
+
 import com.mathsystem.api.graph.GraphFactory;
 import com.mathsystem.api.graph.model.Graph;
 import org.junit.jupiter.api.Test;
@@ -9,12 +11,12 @@ import java.io.FileNotFoundException;
 public class MyTest {
     @Test
     void testik() throws FileNotFoundException{
-        Graph testGraph_1 = GraphFactory.loadGraphFromFile(new File("graph-01.txt"));
-        Graph testGraph0 = GraphFactory.loadGraphFromFile(new File("graph1.txt"));
-        Graph testGraph1 = GraphFactory.loadGraphFromFile(new File("graph2.txt"));
-        Graph testGraph2 = GraphFactory.loadGraphFromFile(new File("graph3.txt"));
-        Graph testGraph3 = GraphFactory.loadGraphFromFile(new File("graph4.txt"));
-        Graph testGraphV = GraphFactory.loadGraphFromFile(new File("graph69.txt"));
+        Graph testGraph_1 = GraphFactory.loadGraphFromFile(new File("src/test/resources/graph-01.txt"));
+        Graph testGraph0 = GraphFactory.loadGraphFromFile(new File("src/test/resources/graph1.txt"));
+        Graph testGraph1 = GraphFactory.loadGraphFromFile(new File("src/test/resources/graph2.txt"));
+        Graph testGraph2 = GraphFactory.loadGraphFromFile(new File("src/test/resources/graph3.txt"));
+        Graph testGraph3 = GraphFactory.loadGraphFromFile(new File("src/test/resources/graph4.txt"));
+        Graph testGraphV = GraphFactory.loadGraphFromFile(new File("src/test/resources/graph69.txt"));
 
         MyTask test = new MyTask();
 

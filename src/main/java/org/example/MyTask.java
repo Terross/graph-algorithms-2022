@@ -1,3 +1,5 @@
+package org.example;
+
 import com.mathsystem.api.graph.model.Edge;
 import com.mathsystem.api.graph.model.Graph;
 import com.mathsystem.domain.graph.repository.Color;
