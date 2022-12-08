@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-public class MyTask implements GraphCharacteristic {
+public class MaximalMatching implements GraphCharacteristic {
     @Override
     public Integer execute(Graph graph) {
 
