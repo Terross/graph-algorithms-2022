@@ -8,7 +8,7 @@ import java.io.FileNotFoundException;
 
 
 
-public class Test69 {
+public class TestMaximalMatching {
     @Test
     void testik() throws FileNotFoundException{
         Graph testGraph_1 = GraphFactory.loadGraphFromFile(new File("src/test/resources/graph-01.txt"));
