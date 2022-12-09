@@ -1,15 +1,10 @@
 package org.example;
-import com.mathsystem.api.graph.GraphFactory;
 import com.mathsystem.api.graph.oldmodel.AbstractGraph;
 import com.mathsystem.api.graph.oldmodel.Vertex;
 import com.mathsystem.api.graph.oldmodel.directed.DirectedGraph;
 
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
-import java.io.File;
-
-import java.util.Scanner;
 
 /*
     Псевдокод для ориентированного графа (первый вариант)
@@ -64,17 +59,9 @@ import java.util.Scanner;
     }
  */
 
-public class MyTask extends AbstractGraph {
+public class PresenceOfACycleOfLengthK extends AbstractGraph {
 
-    private static class Vertexes {
-        private Vertex ver, source;
-        private int hit;
-
-        private Vertexes(Vertex ver, int hit, Vertex source) {
-            this.ver = ver;
-            this.hit = hit;
-            this.source = source;
-        }
+    private record Vertexes(Vertex ver, int hit, Vertex source) {
     }
 
     public static int Find(Vertex V, List<Vertexes> List){
@@ -85,127 +72,45 @@ public class MyTask extends AbstractGraph {
         }
         return -1;
     }
-
-    public static void main(String[] args) throws FileNotFoundException {
-        int CycleLength;
-        Vertex Start;
-        Vertex W;
-        Vertexes U;
-        File file = new File("graph.txt");
-        List<Vertex> Used = new ArrayList();
-        List<Vertexes> QueueV = new ArrayList();
-        System.out.println("Start Function");
-        com.mathsystem.api.graph.model.Graph G = GraphFactory.loadGraphFromFile(new File("src/main/java/test/graph1.txt"));
-        DirectedGraph Graph = new DirectedGraph(G);
-
-
-        Scanner console = new Scanner(System.in);
-        CycleLength = console.nextInt();
-
-        System.out.println("Start algorithm");
-        for (int CurrentV = 0; CurrentV < Graph.getVertices().size(); CurrentV++) {
-            for (int CurrentE = 0; CurrentE < Graph.getVertices().get(CurrentV).getEdgeList().size(); CurrentE++) {
-                W = Graph.getVertices().get(CurrentV).getEdgeList().get(CurrentE).other(Graph.getVertices().get(CurrentV));
-
-                Vertexes NewVer = new Vertexes(W, 1, Graph.getVertices().get(CurrentV));
-                QueueV.add(NewVer);
-            }
-            for (int i = 0; i < CycleLength - 1; i++) {
-                int QueueLength = QueueV.size();
-                for (int j = 0; j < QueueLength; j++) {
-                    U = QueueV.get(0);
-                    QueueV.remove(0);
-                    if (U != null) {
-                        for (int CurrentE = 0; CurrentE < U.ver.getEdgeList().size(); CurrentE++) {
-                            W = U.ver.getEdgeList().get(CurrentE).other(Graph.getVertices().get(CurrentV));
-                            if (Used.contains(W) == false & W != Graph.getVertices().get(CurrentV)) {
-                                if (U.hit != 1) {
-                                    if(QueueV.contains(W) == false) {
-                                        Vertexes NewVer = new Vertexes(W, 1, U.ver);
-                                        QueueV.add(NewVer);
-                                    }
-                                    else{
-                                        int findedInd = Find(W, QueueV);
-                                        Vertexes NewVer = new Vertexes(W,QueueV.get(findedInd).hit+1, null);
-                                        QueueV.set(Find(W, QueueV), NewVer);
-                                    }
-                                }
-                                else{
-                                    if(W != U.source){
-                                        if(QueueV.contains(W) == false) {
-                                            Vertexes NewVer = new Vertexes(W, 1, U.ver);
-                                            QueueV.add(NewVer);
-                                        }
-                                        else{
-                                            int findedInd = Find(W, QueueV);
-                                            Vertexes NewVer = new Vertexes(W,QueueV.get(findedInd).hit+1, null);
-                                            QueueV.set(Find(W, QueueV), NewVer);
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            while(!QueueV.isEmpty()){
-                U = QueueV.get(0);
-                QueueV.remove(0);
-                for (int CurrentE = 0; CurrentE < U.ver.getEdgeList().size(); CurrentE++) {
-                    if(U.ver.getEdgeList().get(CurrentE).other(Graph.getVertices().get(CurrentV)) == Graph.getVertices().get(CurrentV)){
-                        System.out.println("YES!");
-                        System.exit(0);
-                    }
-                    Used.add(Graph.getVertices().get(CurrentV));
-                }
-
+    public static boolean ContainsNotAll(int j, List<Vertex> Queue, Vertex W){
+        for(int i = j - 1; i < Queue.size(); i++){
+            if (Queue.get(i) == W){
+                return true;
             }
         }
-        System.out.println("NO!");
-        System.exit(0);
+        return false;
     }
-
-    public static boolean execute(DirectedGraph Graph, int CycleLength) throws FileNotFoundException {
-        // int CycleLength;
-        Vertex Start;
+    public static boolean execute(DirectedGraph Graph, int CycleLength) {
         Vertex W;
         Vertexes U;
-        File file = new File("graph.txt");
-        List<Vertex> Used = new ArrayList();
-        List<Vertexes> QueueV = new ArrayList();
+        List<Vertex> Used = new ArrayList<>();
+        List<Vertex> Queue = new ArrayList<>();
+        List<Vertexes> QueueV = new ArrayList<>();
 
-        Scanner console = new Scanner(System.in);
-        //CycleLength = console.nextInt();
-
-        System.out.println("We start do algorithm!");
-        if(CycleLength > Graph.getVertexCount() || CycleLength == 0 || CycleLength == 1){
-            System.out.println("NO!");
-            return false;
-        }
-        else {
+        if (CycleLength <= Graph.getVertexCount() && CycleLength != 0 && CycleLength != 1) {
             for (int CurrentV = 0; CurrentV < Graph.getVertices().size(); CurrentV++) {
                 for (int CurrentE = 0; CurrentE < Graph.getVertices().get(CurrentV).getEdgeList().size(); CurrentE++) {
                     W = Graph.getVertices().get(CurrentV).getEdgeList().get(CurrentE).other(Graph.getVertices().get(CurrentV));
 
                     Vertexes NewVer = new Vertexes(W, 1, Graph.getVertices().get(CurrentV));
                     QueueV.add(NewVer);
+                    Queue.add(W);
                 }
-                // System.out.println("First cycle was done!");
                 for (int i = 0; i < CycleLength - 2; i++) {
                     int QueueLength = QueueV.size();
                     for (int j = 0; j < QueueLength; j++) {
                         U = QueueV.get(0);
                         QueueV.remove(0);
+                        Queue.remove(0);
                         if (U != null) {
-                            // System.out.printf("%s", U.ver.toString());
                             for (int CurrentE = 0; CurrentE < U.ver.getEdgeList().size(); CurrentE++) {
-                                // System.out.println("A");
                                 W = U.ver.getEdgeList().get(CurrentE).other(U.ver);
                                 if (!Used.contains(W) & W != Graph.getVertices().get(CurrentV)) {
                                     if (U.hit != 1) {
-                                        if (!QueueV.contains(W)) {
+                                        if (!ContainsNotAll(QueueLength - j, Queue, W)) {
                                             Vertexes NewVer = new Vertexes(W, 1, U.ver);
                                             QueueV.add(NewVer);
+                                            Queue.add(W);
                                         } else {
                                             int findedInd = Find(W, QueueV);
                                             Vertexes NewVer = new Vertexes(W, QueueV.get(findedInd).hit + 1, null);
@@ -213,9 +118,10 @@ public class MyTask extends AbstractGraph {
                                         }
                                     } else {
                                         if (W != U.source) {
-                                            if (!QueueV.contains(W)) {
+                                            if (!ContainsNotAll(QueueLength - j, Queue, W)) {
                                                 Vertexes NewVer = new Vertexes(W, 1, U.ver);
                                                 QueueV.add(NewVer);
+                                                Queue.add(W);
                                             } else {
                                                 int findedInd = Find(W, QueueV);
                                                 Vertexes NewVer = new Vertexes(W, QueueV.get(findedInd).hit + 1, null);
@@ -231,17 +137,16 @@ public class MyTask extends AbstractGraph {
                 while (!QueueV.isEmpty()) {
                     U = QueueV.get(0);
                     QueueV.remove(0);
+                    Queue.remove(0);
                     for (int CurrentE = 0; CurrentE < U.ver.getEdgeList().size(); CurrentE++) {
                         if (U.ver.getEdgeList().get(CurrentE).other(U.ver) == Graph.getVertices().get(CurrentV)) {
-                            System.out.println("YES!");
                             return true;
                         }
                     }
-                    Used.add(Graph.getVertices().get(CurrentV));
                 }
+                Used.add(Graph.getVertices().get(CurrentV));
             }
-            System.out.println("NO!");
-            return false;
         }
+        return false;
     }
 }
