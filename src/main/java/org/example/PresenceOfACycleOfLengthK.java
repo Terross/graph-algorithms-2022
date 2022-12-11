@@ -29,7 +29,7 @@ public class PresenceOfACycleOfLengthK extends AbstractGraph {
         List<Vertex> Used = new ArrayList<>();
         List<Vertexes> QueueV = new ArrayList<>();
 
-        if (CycleLength <= Graph.getVertexCount() && CycleLength != 0 && CycleLength != 1) {
+        if (CycleLength <= Graph.getVertexCount() && CycleLength > 1) {
             for (int CurrentV = 0; CurrentV < Graph.getVertices().size(); CurrentV++) {
                 for (int CurrentE = 0; CurrentE < Graph.getVertices().get(CurrentV).getEdgeList().size(); CurrentE++) {
                     W = Graph.getVertices().get(CurrentV).getEdgeList().get(CurrentE).other(Graph.getVertices().get(CurrentV));
