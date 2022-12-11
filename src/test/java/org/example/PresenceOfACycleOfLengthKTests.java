@@ -16,7 +16,7 @@ public class PresenceOfACycleOfLengthKTests {
         Graph testGraph = GraphFactory.loadGraphFromFile(new File("src/test/resources/graph1.txt"));
         DirectedGraph G = new DirectedGraph(testGraph);
 
-        assertThat(PresenceOfACycleOfLengthK.execute(G, 6)).isEqualTo(true);
+        assertThat(PresenceOfACycleOfLengthK.execute(G, 4)).isEqualTo(true);
     }
 
     @Test
@@ -31,7 +31,7 @@ public class PresenceOfACycleOfLengthKTests {
         Graph testGraph = GraphFactory.loadGraphFromFile(new File("src/test/resources/graph3.txt"));
         DirectedGraph G = new DirectedGraph(testGraph);
 
-        assertThat(PresenceOfACycleOfLengthK.execute(G, 6)).isEqualTo(false);
+        assertThat(PresenceOfACycleOfLengthK.execute(G, 3)).isEqualTo(false);
     }
     @Test
     static void TestFour() throws FileNotFoundException {
@@ -45,14 +45,14 @@ public class PresenceOfACycleOfLengthKTests {
         Graph testGraph = GraphFactory.loadGraphFromFile(new File("src/test/resources/graph5.txt"));
         DirectedGraph G = new DirectedGraph(testGraph);
 
-        assertThat(PresenceOfACycleOfLengthK.execute(G, 8)).isEqualTo(true);
+        assertThat(PresenceOfACycleOfLengthK.execute(G, 7)).isEqualTo(false);
     }
     @Test
     static void TestSix() throws FileNotFoundException {
         Graph testGraph = GraphFactory.loadGraphFromFile(new File("src/test/resources/graph6.txt"));
         DirectedGraph G = new DirectedGraph(testGraph);
 
-        assertThat(PresenceOfACycleOfLengthK.execute(G, 7)).isEqualTo(false);
+        assertThat(PresenceOfACycleOfLengthK.execute(G, 11)).isEqualTo(false);
     }
     @Test
     static void TestSeven() throws FileNotFoundException {
@@ -73,7 +73,7 @@ public class PresenceOfACycleOfLengthKTests {
         Graph testGraph = GraphFactory.loadGraphFromFile(new File("src/test/resources/graph9.txt"));
         DirectedGraph G = new DirectedGraph(testGraph);
 
-        assertThat(PresenceOfACycleOfLengthK.execute(G, 4)).isEqualTo(true);
+        assertThat(PresenceOfACycleOfLengthK.execute(G, 4)).isEqualTo(true);//4
     }
     @Test
     static void TestTen() throws FileNotFoundException {
