@@ -9,7 +9,6 @@ import java.io.File;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-
 public class SomeModuleTest {
     @Test
     public void testSomeModule() throws FileNotFoundException {
@@ -17,7 +16,7 @@ public class SomeModuleTest {
 
         SomeModule someModule = new SomeModule();
         // assertThat(*результат вашего модуля над тестовыми графами*).isEqualTo(*ожидаемый результат*);
-        assertThat(someModule.execute(testGraph_1)).isTrue(); // пример
+        assertThat(someModule.execute(testGraph_1)).isFalse(); // пример
         // assertThat(someModule.execute(testGraph_2)).isFalse();
         // assertThat(3).isEqualTo(3);
         // assertThat(3).isEqualTo(4); <- тест упадет
