@@ -1,0 +1,33 @@
+UNDIRECTED 16
+ 15
+715c2175-fea0-4dcd-b64c-4f9d6bd4762c gray null null -45 131
+cfb20121-7812-46f6-b240-c06cf12e4882 gray null null 206 100
+c0bf86c9-3177-48b8-b144-d1f52f69e5d6 gray null null 415 100
+92b0491f-bbf8-4c8c-91d2-ffbd7f8af739 gray null null 632 100
+b40f4d9f-44d6-4edd-b7bf-e68b0050b325 gray null null 666 329
+2bcabb6a-a9ee-431e-a584-f51490250436 gray null null 691 504
+1b7cce22-143e-4195-89b3-611391b3de75 gray null null 699 647
+2d9ab747-028b-4802-964d-b0c8788b0e2c gray null null 418 664
+54af21c4-a0a6-4066-a60f-51c83e6491ad gray null null 161 682
+bf749b26-c0b7-485b-b84d-03ebea98a22b gray null null -110 684
+870886c1-67f3-4060-b96f-2b3f0531b979 gray null null -312 571
+f9ddf68b-11ee-4a5a-8a46-5f21a8897705 gray null null -302 364
+a56ca9cd-028b-4235-aa9e-0c7577f011ae gray null null -312 228
+a0169096-2b21-465f-ab68-2b4003532af1 gray null null -317 132
+3616a825-5309-404b-97d0-4257b6a9d97c gray null null -470 134
+467f0f27-655d-47cf-bf8f-bf9d85d8eb08 gray null null -598 132
+467f0f27-655d-47cf-bf8f-bf9d85d8eb08 3616a825-5309-404b-97d0-4257b6a9d97c red null null 
+3616a825-5309-404b-97d0-4257b6a9d97c a0169096-2b21-465f-ab68-2b4003532af1 gray null null 
+a0169096-2b21-465f-ab68-2b4003532af1 a56ca9cd-028b-4235-aa9e-0c7577f011ae red null null 
+a56ca9cd-028b-4235-aa9e-0c7577f011ae f9ddf68b-11ee-4a5a-8a46-5f21a8897705 gray null null 
+f9ddf68b-11ee-4a5a-8a46-5f21a8897705 870886c1-67f3-4060-b96f-2b3f0531b979 red null null 
+870886c1-67f3-4060-b96f-2b3f0531b979 bf749b26-c0b7-485b-b84d-03ebea98a22b gray null null 
+bf749b26-c0b7-485b-b84d-03ebea98a22b 54af21c4-a0a6-4066-a60f-51c83e6491ad red null null 
+54af21c4-a0a6-4066-a60f-51c83e6491ad 2d9ab747-028b-4802-964d-b0c8788b0e2c gray null null 
+2d9ab747-028b-4802-964d-b0c8788b0e2c 1b7cce22-143e-4195-89b3-611391b3de75 red null null 
+1b7cce22-143e-4195-89b3-611391b3de75 2bcabb6a-a9ee-431e-a584-f51490250436 gray null null 
+2bcabb6a-a9ee-431e-a584-f51490250436 b40f4d9f-44d6-4edd-b7bf-e68b0050b325 red null null 
+b40f4d9f-44d6-4edd-b7bf-e68b0050b325 92b0491f-bbf8-4c8c-91d2-ffbd7f8af739 gray null null 
+92b0491f-bbf8-4c8c-91d2-ffbd7f8af739 c0bf86c9-3177-48b8-b144-d1f52f69e5d6 red null null 
+c0bf86c9-3177-48b8-b144-d1f52f69e5d6 cfb20121-7812-46f6-b240-c06cf12e4882 gray null null 
+cfb20121-7812-46f6-b240-c06cf12e4882 715c2175-fea0-4dcd-b64c-4f9d6bd4762c red null null 
