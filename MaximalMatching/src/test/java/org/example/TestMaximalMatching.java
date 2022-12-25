@@ -11,12 +11,12 @@ import java.io.FileNotFoundException;
 public class TestMaximalMatching {
     @Test
     void testik() throws FileNotFoundException{
-        Graph testGraph_1 = GraphFactory.loadGraphFromFile(new File("src/test/resources/TestMaximalMatching1.txt"));
-        Graph testGraph0 = GraphFactory.loadGraphFromFile(new File("src/test/resources/TestMaximalMatching2.txt"));
-        Graph testGraph1 = GraphFactory.loadGraphFromFile(new File("src/test/resources/TestMaximalMatching3.txt"));
-        Graph testGraph2 = GraphFactory.loadGraphFromFile(new File("src/test/resources/TestMaximalMatching4.txt"));
-        Graph testGraph3 = GraphFactory.loadGraphFromFile(new File("src/test/resources/TestMaximalMatching5.txt"));
-        Graph testGraphV = GraphFactory.loadGraphFromFile(new File("src/test/resources/TestMaximalMatching6.txt"));
+        Graph testGraph_1 = GraphFactory.loadGraphFromFile(new File("src/test/resources/graph-01.txt"));
+        Graph testGraph0 = GraphFactory.loadGraphFromFile(new File("src/test/resources/graph1.txt"));
+        Graph testGraph1 = GraphFactory.loadGraphFromFile(new File("src/test/resources/graph2.txt"));
+        Graph testGraph2 = GraphFactory.loadGraphFromFile(new File("src/test/resources/graph3.txt"));
+        Graph testGraph3 = GraphFactory.loadGraphFromFile(new File("src/test/resources/graph4.txt"));
+        Graph testGraphV = GraphFactory.loadGraphFromFile(new File("src/test/resources/graph69.txt"));
 
         MaximalMatching test = new MaximalMatching();
 
@@ -39,10 +39,6 @@ public class TestMaximalMatching {
         if (test.execute(testGraph3) == 4){
             System.out.print((test.execute(testGraph3) == 4) + " ");
             System.out.println(test.execute(testGraph3));
-        }
-        if (test.execute(testGraphV) == 4){
-            System.out.print((test.execute(testGraphV) == 4) + " ");
-            System.out.println(test.execute(testGraphV));
         }
 
         if (test.execute(testGraphV) == 2){
