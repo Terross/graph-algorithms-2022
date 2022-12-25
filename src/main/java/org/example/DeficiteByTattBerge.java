@@ -7,7 +7,7 @@ import com.mathsystem.domain.plugin.plugintype.GraphCharacteristic;
 
 import java.util.*;
 
-public class DeficiteByTatt implements GraphCharacteristic {
+public class DeficiteByTattBerge implements GraphCharacteristic {
     @Override
     public Integer execute(Graph graph) {
 
@@ -18,7 +18,8 @@ public class DeficiteByTatt implements GraphCharacteristic {
         List<Edge> array = graph.getEdges();
         for (Edge edge : array) {
             map.get(edge.getToV()).setWeight(0);
-            map.get(edge.getFromV()).setWeight(0);}
+            map.get(edge.getFromV()).setWeight(0);
+        }
 
         for (Edge edge : array) {
             map.get(edge.getToV()).setWeight(map.get(edge.getToV()).getWeight() + 1);
@@ -29,7 +30,14 @@ public class DeficiteByTatt implements GraphCharacteristic {
         boolean sorted = false;
         Edge temp;
         Set<List<Vertex>> set = new HashSet<>();
-        Vertex[] arr = (Vertex[]) graph.getVertices().values().toArray();
+        List<UUID> keys = new ArrayList<UUID>(map.keySet());
+        Vertex[] arr = new Vertex[graph.getVertexCount()];
+        for(int i = 0; i < keys.size(); i++) {
+            UUID key = keys.get(i);
+            Vertex vertex = map.get(key);
+            arr[i] = vertex;
+        }
+       // = graph.getVertices().values().toArray(new Vertex[0]);
         Arrays.sort(arr);
         int N = (int)Math.pow(2, arr.length);
         for (int i = 0; i < N; i++)
@@ -51,8 +59,25 @@ public class DeficiteByTatt implements GraphCharacteristic {
         int def = graph.getVertexCount();
         for (List<Vertex> list : set) {
             k=// количество компонент связности при удалении данного множества вершин
-            def = Math.max(def, k-list.size());
+                    def = Math.max(def, k-list.size());
         }
         return def;
     }
+    public int FindCountOfConnectivityComponents(Graph graph, List<Vertex> set) {
+        Map<UUID, Vertex> map;
+        for (Vertex v:set) {
+
+        }
+    }
 }
+
+//package org.example;
+//
+//        import com.mathsystem.api.graph.model.Graph;
+//        import com.mathsystem.domain.plugin.plugintype.GraphCharacteristic;
+//public class BergeDeficite implements GraphCharacteristic {
+//    @Override
+//    public Integer execute(Graph graph) {
+//        return graph.getVertexCount()-2*(new MaximalMatching().execute(graph));
+//    }
+//}

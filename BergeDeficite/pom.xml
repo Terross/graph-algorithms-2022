@@ -27,7 +27,15 @@
             <version>1.0-SNAPSHOT</version>
             <scope>system</scope>
             <type>jar</type>
-            <systemPath>${project.basedir}/src/main/resources/math-system-1_0-SNAPSHOT.jar</systemPath>
+            <systemPath>../math-system-1_0-SNAPSHOT.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.example</groupId>
+            <artifactId>MaximalMatching</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>system</scope>
+            <type>jar</type>
+            <systemPath>../MaximalMatching.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
