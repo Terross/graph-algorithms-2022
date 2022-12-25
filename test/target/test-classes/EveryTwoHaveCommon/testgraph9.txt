@@ -1,0 +1,7 @@
+DIRECTED 3
+ 2
+024904ba-2736-42cc-bfe4-2c4a7001d720 gray null null 598 571
+1983a118-15eb-4e8e-9362-fb5668efd379 gray null null 648 448
+6fc7e8bf-3bff-4b03-bb12-9295290870a3 gray null null 340 400
+6fc7e8bf-3bff-4b03-bb12-9295290870a3 1983a118-15eb-4e8e-9362-fb5668efd379 gray null null 
+6fc7e8bf-3bff-4b03-bb12-9295290870a3 024904ba-2736-42cc-bfe4-2c4a7001d720 gray null null 
