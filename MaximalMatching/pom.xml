@@ -27,7 +27,7 @@
             <version>1.0-SNAPSHOT</version>
             <scope>system</scope>
             <type>jar</type>
-            <systemPath>../math-system-1_0-SNAPSHOT.jar</systemPath>
+            <systemPath>${project.basedir}/src/main/resources/math-system-1_0-SNAPSHOT.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
