@@ -32,7 +32,7 @@ public class BFSVertices implements GraphProperty {
             }
         }
 
-        // по матрице смежности сделать матрицу инцидентов (списки инцидентности)
+        // по матрице смежности сделать списки инцидентности
         Map<UUID, Map<UUID, Boolean>> incidence = adjacencyToIncidence(adjacencyMatrix,
                 graph.getVertexCount());
 
@@ -43,31 +43,23 @@ public class BFSVertices implements GraphProperty {
 
     private void createMatrix(Graph graph, Map<UUID, Map<UUID, Boolean>> adjacencyMatrix) {
         for (UUID vertex1 : graph.getVertices().keySet()) {
-            if (graph.getVertices().get(vertex1).getColor() == Color.gray) {
-                Map<UUID, Boolean> vertexes = new HashMap<>();
+            Map<UUID, Boolean> vertexes = new HashMap<>();
 
-                for (UUID vertex2 : graph.getVertices().keySet()) {
-                    if (graph.getVertices().get(vertex2).getColor() == Color.gray) {
-                        vertexes.put(vertex2, false);
-                    }
-                }
-
-                adjacencyMatrix.put(vertex1, vertexes);
+            for (UUID vertex2 : graph.getVertices().keySet()) {
+                vertexes.put(vertex2, false);
             }
+
+            adjacencyMatrix.put(vertex1, vertexes);
         }
 
         for (Edge edge : graph.getEdges()) {
             UUID vertex1 = edge.getFromV();
             UUID vertex2 = edge.getToV();
 
-            if (graph.getVertices().get(vertex1).getColor() == Color.gray &&
-                    graph.getVertices().get(vertex2).getColor() == Color.gray) {
-
                 adjacencyMatrix.get(vertex1).put(vertex2, true);
                 if (graph.getDirectType() == GraphType.UNDIRECTED) {
                     adjacencyMatrix.get(vertex2).put(vertex1, true);
                 }
-            }
         }
     }
 
