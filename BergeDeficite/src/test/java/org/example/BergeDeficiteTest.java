@@ -12,7 +12,7 @@ public class BergeDeficiteTest {
         Graph graph;
         BergeDeficite tatt = new BergeDeficite();
         //BergeDeficite tatt = new BergeDeficite();
-        int[] expectedAnswers = {0, 1, 0, 1, 0, 1, 100, 1000};
+        int[] expectedAnswers = {0, 1, 0, 1, 0, 1, 2, 1, 0, 0, 4, 0, 1, 0};
         for (int i = 0; i < expectedAnswers.length; i++) {
             graph = GraphFactory.loadGraphFromFile(new File("src/test/resources/Berge" + i + ".txt"));
             int res = tatt.execute(graph);
