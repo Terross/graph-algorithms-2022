@@ -26,7 +26,7 @@ public class MaximalMatching implements GraphCharacteristic {
 
         for (Edge edge : array) {
             map.get(edge.getToV()).setWeight(map.get(edge.getToV()).getWeight() + 1);
-            map.get(edge.getToV()).setWeight(map.get(edge.getFromV()).getWeight() + 1);
+            map.get(edge.getFromV()).setWeight(map.get(edge.getFromV()).getWeight() + 1);
         }
 
 
@@ -37,7 +37,7 @@ public class MaximalMatching implements GraphCharacteristic {
             for (int i = 0; i < array.size()-1; i++) {
                 int sumVWi = map.get(array.get(i).getToV()).getWeight() + map.get(array.get(i).getFromV()).getWeight();
                 int sumVWi1 = map.get(array.get(i + 1).getToV()).getWeight() + map.get(array.get(i + 1).getFromV()).getWeight();
-                if (sumVWi < sumVWi1) {
+                if (sumVWi > sumVWi1) {
                     temp = array.get(i);
                     array.set(i, array.get(i + 1));
                     array.set(i + 1, temp);
