@@ -20,7 +20,9 @@ public class DeficiteByTattBerge implements GraphCharacteristic {
         List<Edge> array = graph.getEdges();
         for (Edge edge : array) {
             map.get(edge.getToV()).setWeight(0);
+            map.get(edge.getToV()).setColor(Color.gray);
             map.get(edge.getFromV()).setWeight(0);
+            map.get(edge.getFromV()).setColor(Color.gray);
         }
 
         for (Edge edge : array) {
