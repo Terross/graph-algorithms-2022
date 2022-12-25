@@ -1,3 +1,4 @@
+package org.example;
 import org.junit.jupiter.api.Test;
 import com.mathsystem.api.graph.model.Graph;
 import java.io.File;
