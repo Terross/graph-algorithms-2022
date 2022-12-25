@@ -12,7 +12,7 @@ public class BergeDeficiteTest {
         Graph graph;
         DeficiteByTattBerge tatt = new DeficiteByTattBerge();
         //BergeDeficite tatt = new BergeDeficite();
-        int[] expectedAnswers = {0, 1, 0, 1, 0, 1, 100, 1000};
+        int[] expectedAnswers = {0, 1, 0, 1, 0, 1, 2, 0, 0};
         for (int i = 0; i < expectedAnswers.length; i++) {
             graph = GraphFactory.loadGraphFromFile(new File("src/test/resources/Berge" + i + ".txt"));
             int res = tatt.execute(graph);
@@ -28,8 +28,7 @@ public class BergeDeficiteTest {
     @Test
     void BergeBenchmark() throws FileNotFoundException {
         Graph graph;
-        //DeficiteByTatt tatt = new DeficiteByTatt();
-        BergeDeficite std = new BergeDeficite();
+        DeficiteByTattBerge std = new DeficiteByTattBerge();
         int[] expectedAnswers = {100, 98, 1000, 0};
         for (int i = 0; i < expectedAnswers.length; i++) {
             graph = GraphFactory.loadGraphFromFile(new File("src/test/resources/Bench" + i + ".txt"));
