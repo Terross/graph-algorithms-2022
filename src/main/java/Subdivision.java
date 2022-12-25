@@ -2,7 +2,6 @@ import com.mathsystem.api.graph.model.Edge;
 import com.mathsystem.api.graph.model.Graph;
 import com.mathsystem.api.graph.model.Vertex;
 import com.mathsystem.domain.graph.repository.Color;
-import com.mathsystem.domain.graph.repository.GraphType;
 import com.mathsystem.domain.plugin.plugintype.GraphProperty;
 
 import java.util.*;
@@ -10,10 +9,6 @@ import java.util.*;
 public class Subdivision implements GraphProperty {
     @Override
     public boolean execute(Graph abstractGraph) {
-        if (abstractGraph.getDirectType() == GraphType.UNDIRECTED) {
-            return false;
-        }
-
         Map<UUID, ArrayList<Boolean>> markedVertexes = new HashMap<>();
 
         for (Vertex vertex : abstractGraph.getVertices().values()) {
