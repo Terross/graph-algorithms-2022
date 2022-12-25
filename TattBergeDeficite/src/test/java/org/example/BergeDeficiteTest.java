@@ -10,7 +10,7 @@ public class BergeDeficiteTest {
     @Test
     void BergeTest() throws FileNotFoundException {
         Graph graph;
-        BergeDeficite tatt = new BergeDeficite();
+        DeficiteByTattBerge tatt = new DeficiteByTattBerge();
         //BergeDeficite tatt = new BergeDeficite();
         int[] expectedAnswers = {0, 1, 0, 1, 0, 1, 100, 1000};
         for (int i = 0; i < expectedAnswers.length; i++) {
