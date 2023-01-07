@@ -16,6 +16,7 @@ public class BFSEdgesTest {
         Graph graphTrue3 = GraphFactory.loadGraphFromFile(new File("src/test/resources/graphs/bfsEdges/graph_2_true.txt"));
         Graph graphTrue4 = GraphFactory.loadGraphFromFile(new File("src/test/resources/graphs/bfsEdges/graph_3_true.txt"));
         Graph graphTrue5 = GraphFactory.loadGraphFromFile(new File("src/test/resources/graphs/bfsEdges/graph_4_true.txt"));
+        Graph graphTrue6 = GraphFactory.loadGraphFromFile(new File("src/test/resources/graphs/bfsEdges/graph_5_true.txt"));
 
         Graph graphFalse1 = GraphFactory.loadGraphFromFile(new File("src/test/resources/graphs/bfsEdges/graphFalse.txt"));
         Graph graphFalse2 = GraphFactory.loadGraphFromFile(new File("src/test/resources/graphs/bfsEdges/graph_1_false.txt"));
@@ -34,6 +35,7 @@ public class BFSEdgesTest {
         assertThat(bfsEdges.execute(graphTrue3)).isTrue();
         assertThat(bfsEdges.execute(graphTrue4)).isTrue();
         assertThat(bfsEdges.execute(graphTrue5)).isTrue();
+        assertThat(bfsEdges.execute(graphTrue6)).isTrue();
 
         assertThat(bfsEdges.execute(graphFalse1)).isFalse();
         assertThat(bfsEdges.execute(graphFalse2)).isFalse();

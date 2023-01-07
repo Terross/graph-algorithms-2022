@@ -142,8 +142,9 @@ public class BFSEdges implements GraphProperty {
 
                             // добавляем его в очередь
                             queue.add(neighbour);
+
+                            m += 1; // кол-во элем уровня
                         }
-                        m += 1; // кол-во элем уровня
                         // помечаем вершину как посещенную
                         l.put(neighbour, true);
                     }
