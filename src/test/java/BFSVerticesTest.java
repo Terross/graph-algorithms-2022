@@ -20,6 +20,10 @@ public class BFSVerticesTest {
         Graph graphFalse3 = GraphFactory.loadGraphFromFile(new File("src/test/resources/graphs/bfsVertices/graph_1_false.txt"));
         Graph graphFalse4 = GraphFactory.loadGraphFromFile(new File("src/test/resources/graphs/bfsVertices/graph_2_false.txt"));
         Graph graphFalse5 = GraphFactory.loadGraphFromFile(new File("src/test/resources/graphs/bfsVertices/graph_3_false.txt"));
+        Graph graphFalse6 = GraphFactory.loadGraphFromFile(new File("src/test/resources/graphs/bfsVertices/graph_empty.txt"));
+        Graph graphFalse7 = GraphFactory.loadGraphFromFile(new File("src/test/resources/graphs/bfsVertices/graph_not_connective.txt"));
+        Graph graphFalse8 = GraphFactory.loadGraphFromFile(new File("src/test/resources/graphs/bfsVertices/graph_one_vert.txt"));
+
 
         BFSVertices bfsVertices = new BFSVertices();
 
@@ -32,6 +36,9 @@ public class BFSVerticesTest {
         assertThat(bfsVertices.execute(graphFalse3)).isFalse();
         assertThat(bfsVertices.execute(graphFalse4)).isFalse();
         assertThat(bfsVertices.execute(graphFalse5)).isFalse();
+        assertThat(bfsVertices.execute(graphFalse6)).isFalse();
+        assertThat(bfsVertices.execute(graphFalse7)).isFalse();
+        assertThat(bfsVertices.execute(graphFalse8)).isFalse();
 
     }
 }
