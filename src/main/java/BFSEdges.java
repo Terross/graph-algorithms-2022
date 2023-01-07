@@ -96,6 +96,7 @@ public class BFSEdges implements GraphProperty {
     // s - start - начальная вершина
     private boolean BFS( Graph graph, UUID s, Map<UUID, Boolean> l,
                          Map<UUID, List<UUID>> incident) {
+        if (s == null) return false;
         HashSet<Integer> ourLabels = new <Integer>HashSet();
         HashSet<Integer> labels = new <Integer>HashSet();
         boolean isEmp = true; // для проверки, что пользователь назначил графу метки

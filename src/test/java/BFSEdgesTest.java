@@ -22,6 +22,10 @@ public class BFSEdgesTest {
         Graph graphFalse3 = GraphFactory.loadGraphFromFile(new File("src/test/resources/graphs/bfsEdges/graph_2_false.txt"));
         Graph graphFalse4 = GraphFactory.loadGraphFromFile(new File("src/test/resources/graphs/bfsEdges/graph_3_false.txt"));
         Graph graphFalse5 = GraphFactory.loadGraphFromFile(new File("src/test/resources/graphs/bfsEdges/graph_4_false.txt"));
+        Graph graphFalse6 = GraphFactory.loadGraphFromFile(new File("src/test/resources/graphs/bfsEdges/graph_empty.txt"));
+        Graph graphFalse7 = GraphFactory.loadGraphFromFile(new File("src/test/resources/graphs/bfsEdges/graph_not_connective.txt"));
+        Graph graphFalse8 = GraphFactory.loadGraphFromFile(new File("src/test/resources/graphs/bfsEdges/graph_one_vert.txt"));
+
 
         BFSEdges bfsEdges = new BFSEdges();
 
@@ -36,6 +40,9 @@ public class BFSEdgesTest {
         assertThat(bfsEdges.execute(graphFalse3)).isFalse();
         assertThat(bfsEdges.execute(graphFalse4)).isFalse();
         assertThat(bfsEdges.execute(graphFalse5)).isFalse();
+        assertThat(bfsEdges.execute(graphFalse6)).isFalse();
+        assertThat(bfsEdges.execute(graphFalse7)).isFalse();
+        assertThat(bfsEdges.execute(graphFalse8)).isFalse();
 
     }
 }
