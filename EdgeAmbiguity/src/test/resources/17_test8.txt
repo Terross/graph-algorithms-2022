@@ -1,0 +1,8 @@
+UNDIRECTED 4
+ 2
+60c54183-bbae-490d-863e-9633ddde3c7d gray 0 A 1123 328
+2b9aee37-19d3-4c59-a517-961dd7a310b2 gray 0 A 1117 604
+4441376e-76ff-49c2-9906-5768e713dea0 gray 0 B 1311 480
+c4addd12-ce17-46a0-b7cc-ccb84eae1d15 gray 0 B 998 497
+60c54183-bbae-490d-863e-9633ddde3c7d 2b9aee37-19d3-4c59-a517-961dd7a310b2 gray null null 
+c4addd12-ce17-46a0-b7cc-ccb84eae1d15 4441376e-76ff-49c2-9906-5768e713dea0 gray null null 
