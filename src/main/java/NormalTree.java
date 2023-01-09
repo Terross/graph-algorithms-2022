@@ -38,94 +38,63 @@ public class NormalTree implements GraphProperty {
             if (notInSubgraph.contains(edge_check)) {
                 UUID vertex1 = edge_check.getFromV(); // 1 вершина ребра не из подграфа
                 UUID vertex2 = edge_check.getToV(); // 2 вершина ребра не из подграфа
-                for (Edge edge : inSubgraph) {
-                    List<UUID> visited_1 = new ArrayList<>(); // посещенные вершины при обходе в глубину до 1 вершины
-                    visited_1.add(root);
-                    List<UUID> visited_2 = new ArrayList<>(); // посещенные вершины при обходе в глубину до 2 вершины
-                    visited_2.add(root);
-                    if (edge.getToV().equals(root)) {
-                        DFS(root, vertex1, edge, visited_1, inSubgraph);
-                    }
-                    if (edge.getFromV().equals(root)) {
-                        DFS(root, vertex1, edge, visited_1, inSubgraph);
-                    }
-                    if (edge.getToV().equals(root)) {
-                        DFS(root, vertex2, edge, visited_2, inSubgraph);
-                    }
-                    if (edge.getFromV().equals(root)) {
-                        DFS(root, vertex2, edge, visited_2, inSubgraph);
-                    }
-                    // если в одной ветке остовного дерева с вершиной 1 нет вершины 2 и в ветке с вершиной 2 нет вершины 1, то дерево не нормальное
-                    if (edge.getToV().equals(root)) {
-                        if (visited_1.contains(edge.getFromV()) && visited_2.contains(edge.getFromV()) && visited_1.contains(vertex1) && visited_2.contains(vertex2)) {
-                            if (!(visited_1.subList(visited_1.lastIndexOf(edge.getFromV()), visited_1.indexOf(vertex1))).contains(vertex2) && !(visited_2.subList(visited_2.lastIndexOf(edge.getFromV()), visited_2.indexOf(vertex2))).contains(vertex1)) {
-                                return false;
-                            }
-                        }
-
-                    }
-                    if (edge.getFromV().equals(root)) {
-                        if (visited_1.contains(edge.getToV()) && visited_2.contains(edge.getToV()) && visited_1.contains(vertex1) && visited_2.contains(vertex2)) {
-                            if (!(visited_1.subList(visited_1.lastIndexOf(edge.getToV()), visited_1.indexOf(vertex1))).contains(vertex2) && !(visited_2.subList(visited_2.lastIndexOf(edge.getToV()), visited_2.indexOf(vertex2))).contains(vertex1)) {
-                                return false;
-                            }
-                        }
-
-                    }
-                    visited_1.clear();
-                    visited_2.clear();
+                Stack<UUID> stack_dfs_1 = depthFirstSearch(root, vertex1, inSubgraph);
+                Stack<UUID> stack_dfs_2 = depthFirstSearch(root, vertex2, inSubgraph);
+                if(!stack_dfs_1.contains(vertex2)&&!stack_dfs_2.contains(vertex1)){ // если в стеке есть вершина, значит она встречается на пути
+                    return false;
                 }
             }
         }
         return true;
     }
-
-    // функция обхода в глубину
-    private void DFS(UUID root, UUID vertex_to_find, Edge edge, List<UUID> visited, List<Edge> inSubgraph) {
-        if (!visited.contains(vertex_to_find)) {
-            if (edge.getToV().equals(root)) {
-                if (!vertex_to_find.equals(root)) {
-                    visited.add(edge.getFromV());
-                    if (!vertex_to_find.equals(edge.getFromV())) {
-                        for (Edge new_edge : inSubgraph) {
-                            if (!new_edge.equals(edge) && edge.getFromV().equals(new_edge.getToV()) && !visited.contains(edge.getFromV())) {
-                                visited.add(new_edge.getFromV());
-                                if (!vertex_to_find.equals(new_edge.getFromV())) {
-                                    DFS(new_edge.getToV(), vertex_to_find, new_edge, visited, inSubgraph);
-                                }
-                            }
-                            if (!new_edge.equals(edge) && edge.getFromV().equals(new_edge.getFromV()) && !visited.contains(edge.getFromV())) {
-                                visited.add(new_edge.getToV());
-                                if (!vertex_to_find.equals(new_edge.getToV())) {
-                                    DFS(new_edge.getFromV(), vertex_to_find, new_edge, visited, inSubgraph);
-                                }
-                            }
-                        }
-                    }
+    private boolean checkForUnlistedEdges(UUID vertex, List<UUID> visited, List<Edge> inSubgraph){ // проверка на существование смежных вершин
+        for(Edge edge : inSubgraph){
+            if(edge.getToV().equals(vertex)){
+                if(!visited.contains(edge.getFromV())){
+                    return true;
                 }
             }
-            if (edge.getFromV().equals(root)) {
-                if (!vertex_to_find.equals(root)) {
-                    visited.add(edge.getToV());
-                    if (!vertex_to_find.equals(edge.getToV())) {
-                        for (Edge new_edge : inSubgraph) {
-                            if (!new_edge.equals(edge) && edge.getToV().equals(new_edge.getToV()) && !visited.contains(edge.getToV())) {
-                                visited.add(new_edge.getFromV());
-                                if (!vertex_to_find.equals(new_edge.getFromV())) {
-                                    DFS(new_edge.getToV(), vertex_to_find, new_edge, visited, inSubgraph);
-                                }
-                            }
-                            if (!new_edge.equals(edge) && edge.getToV().equals(new_edge.getFromV()) && !visited.contains(edge.getToV())) {
-                                visited.add(new_edge.getToV());
-                                if (!vertex_to_find.equals(new_edge.getToV())) {
-                                    DFS(new_edge.getFromV(), vertex_to_find, new_edge, visited, inSubgraph);
-                                }
-                            }
-                        }
-                    }
+            if(edge.getFromV().equals(vertex)){
+                if(!visited.contains(edge.getToV())){
+                    return true;
                 }
             }
         }
-
+        return false;
     }
+    private UUID findUnlistedVertex(UUID vertex, List<UUID> visited, List<Edge> inSubgraph){ // нахождение смежной вершины
+        for(Edge edge : inSubgraph){
+            if(edge.getToV().equals(vertex)){
+                if(!visited.contains(edge.getFromV())){
+                    return edge.getFromV();
+                }
+            }
+            if(edge.getFromV().equals(vertex)){
+                if(!visited.contains(edge.getToV())){
+                    return edge.getToV();
+                }
+            }
+        }
+        return null;
+    }
+    // функция обхода в глубину
+    private Stack<UUID> depthFirstSearch(UUID root, UUID vertex_to_find, List<Edge> inSubgraph){
+        List<UUID> visited = new ArrayList<>(); // посещенные вершины при обходе в глубину
+        Stack<UUID> stack = new Stack<>(); // стек для обхода в глубину
+        stack.push(root);
+        visited.add(root);
+        while(!visited.contains(vertex_to_find)&&!stack.isEmpty()){
+            UUID vertex = stack.peek();
+            if(checkForUnlistedEdges(vertex, visited, inSubgraph)){
+                UUID temp_vertex = findUnlistedVertex(vertex, visited, inSubgraph);
+                stack.push(temp_vertex);
+                visited.add(temp_vertex);
+            }
+            else {
+                stack.pop();
+            }
+        }
+        return stack;
+    }
+
 }
