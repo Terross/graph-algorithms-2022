@@ -24,28 +24,6 @@ public class NormalTreeTest {
 
         NormalTree normalTree = new NormalTree();
 
-        //System.out.printf("testGraphTrue1: %s ", normalTree.execute(testGraphTrue1));
-        //System.out.printf("\n");
-        //System.out.printf("testGraphTrue2: %s ", normalTree.execute(testGraphTrue2));
-        //System.out.printf("\n");
-        //System.out.printf("testGraphTrue3: %s ", normalTree.execute(testGraphTrue3));
-        //System.out.printf("\n");
-        //System.out.printf("testGraphTrue4: %s ", normalTree.execute(testGraphTrue4));
-        //System.out.printf("\n");
-        //System.out.printf("testGraphTrue5: %s ", normalTree.execute(testGraphTrue5));
-        //System.out.printf("\n");
-
-        //System.out.printf("testGraphFalse1: %s ", normalTree.execute(testGraphFalse1));
-        //System.out.printf("\n");
-        //System.out.printf("testGraphFalse2: %s ", normalTree.execute(testGraphFalse2));
-        //System.out.printf("\n");
-        //System.out.printf("testGraphFalse3: %s ", normalTree.execute(testGraphFalse3));
-        //System.out.printf("\n");
-        //System.out.printf("testGraphFalse4: %s ", normalTree.execute(testGraphFalse4));
-        //System.out.printf("\n");
-        //System.out.printf("testGraphFalse5: %s ", normalTree.execute(testGraphFalse5));
-        //System.out.printf("\n");
-
         assertThat(normalTree.execute(testGraphTrue1)).isTrue();
         assertThat(normalTree.execute(testGraphTrue2)).isTrue();
         assertThat(normalTree.execute(testGraphTrue3)).isTrue();
