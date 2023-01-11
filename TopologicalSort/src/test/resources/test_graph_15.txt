@@ -1,0 +1,4 @@
+DIRECTED 2
+ 0
+c2dca059-c9a8-4318-88ee-097ad2bd1038 gray 1 0 178 131
+35374d71-d7ae-49dc-bfd8-9fa15ffc5518 gray 2 0 314 50

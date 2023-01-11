@@ -1,0 +1,6 @@
+DIRECTED 3
+ 1
+cf63ba3f-ae1e-4e62-81f2-93882e31148c gray 1 0 124 175
+ced1057b-3faf-466b-9071-9a72c7efce87 gray 2 0 372 145
+a1f76ef7-14f6-42be-8274-b7c8d5d867ff gray 3 0 343 287
+cf63ba3f-ae1e-4e62-81f2-93882e31148c ced1057b-3faf-466b-9071-9a72c7efce87 gray null null 
