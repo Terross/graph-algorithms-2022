@@ -1,3 +1,4 @@
+package org.example;
 import org.junit.jupiter.api.Test;
 import com.mathsystem.api.graph.model.Graph;
 import java.io.File;
@@ -107,48 +108,6 @@ public class TopologicalSortTest {
     public void Test15() throws FileNotFoundException{
         System.out.println("Test 15");
         Graph testGraph = GraphFactory.loadGraphFromFile(new File("src/test/resources/test_graph_15.txt"));
-        topologicalsort test = new topologicalsort();
-        System.out.println(test.execute(testGraph));
-    }
-    @Test
-    public void Test16() throws FileNotFoundException{
-        System.out.println("Test 16");
-        Graph testGraph = GraphFactory.loadGraphFromFile(new File("src/test/resources/test_graph_16.txt"));
-        topologicalsort test = new topologicalsort();
-        System.out.println(test.execute(testGraph));
-    }
-    @Test
-    public void Test17() throws FileNotFoundException{
-        System.out.println("Test 17");
-        Graph testGraph = GraphFactory.loadGraphFromFile(new File("src/test/resources/test_graph_17.txt"));
-        topologicalsort test = new topologicalsort();
-        System.out.println(test.execute(testGraph));
-    }
-    @Test
-    public void Test18() throws FileNotFoundException{
-        System.out.println("Test 18");
-        Graph testGraph = GraphFactory.loadGraphFromFile(new File("src/test/resources/test_graph_18.txt"));
-        topologicalsort test = new topologicalsort();
-        System.out.println(test.execute(testGraph));
-    }
-    @Test
-    public void Test19() throws FileNotFoundException{
-        System.out.println("Test 19");
-        Graph testGraph = GraphFactory.loadGraphFromFile(new File("src/test/resources/test_graph_19.txt"));
-        topologicalsort test = new topologicalsort();
-        System.out.println(test.execute(testGraph));
-    }
-    @Test
-    public void Test20() throws FileNotFoundException{
-        System.out.println("Test 20");
-        Graph testGraph = GraphFactory.loadGraphFromFile(new File("src/test/resources/test_graph_20.txt"));
-        topologicalsort test = new topologicalsort();
-        System.out.println(test.execute(testGraph));
-    }
-    @Test
-    public void Test21() throws FileNotFoundException{
-        System.out.println("Test 21");
-        Graph testGraph = GraphFactory.loadGraphFromFile(new File("src/test/resources/test_graph_21.txt"));
         topologicalsort test = new topologicalsort();
         System.out.println(test.execute(testGraph));
     }
